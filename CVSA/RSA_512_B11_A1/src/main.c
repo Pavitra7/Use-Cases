@@ -1,4 +1,4 @@
-/*In this experiment, we have one victim main thread, one victim encryption thread having RSA 512, one benchmark code*/
+/*In this experiment, we have one victim main thread, victim encryption thread having RSA 512, one benchmark thread and one attacker thread*/
 
 //Headers
 #include <stdio.h>
@@ -8,7 +8,7 @@
 #include <sys/printk.h>
 #include <timing/timing.h>
 #include "bitstrng.c"
-
+#include "attack.c"
 
 #define LENGTH 512
 #define MY_STACK_SIZE 500
@@ -79,7 +79,7 @@ K_THREAD_DEFINE(my_benchmark1_thread1, MY_STACK_SIZE,
     // Encrypt the message
     k_thread_start(my_victim_thread);
     k_thread_start(my_benchmark1_thread1);
-
+    k_thread_start(attack_thread);
     // Print the encrypted message
     printf("Encrypted message: ");
     for (size_t i = 0; i < message_len; ++i) {
