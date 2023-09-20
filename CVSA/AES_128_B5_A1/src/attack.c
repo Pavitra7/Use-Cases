@@ -8,7 +8,7 @@
 #include <sys/printk.h>
 #define MY_STACK_SIZE 500
 #define MY_PRIORITY 5
-#define LENGTH 512
+#define LENGTH 2048
 #define CACHE_SIZE 4 * 16 * 64
 
 // The attacking flush function
